@@ -10,7 +10,7 @@ const HeroSection = () => {
   const socialLinks = [
     {
       icon: Github,
-      href: 'https://github.com/arunprakash-s',
+      href: 'https://github.com/Arun-2005-cyber',
       label: 'GitHub'
     },
     {
