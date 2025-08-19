@@ -15,12 +15,12 @@ const HeroSection = () => {
     },
     {
       icon: Linkedin,
-      href: 'https://linkedin.com/in/arunprakash-s',
+      href: 'https://linkedin.com/in/arun-prakash-a71a42291',
       label: 'LinkedIn'
     },
     {
       icon: Mail,
-      href: 'mailto:arunprakash.dev@email.com',
+      href: 'mailto:arunprakashsekar2005@gmail.com',
       label: 'Email'
     }
   ];
