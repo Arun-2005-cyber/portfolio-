@@ -58,9 +58,7 @@ const HeroSection = () => {
                 <Download size={20} />
                 Download Resume
               </button>
-              <button className="btn-outline">
-                View My Work
-              </button>
+          
             </div>
 
             {/* Social Links */}
