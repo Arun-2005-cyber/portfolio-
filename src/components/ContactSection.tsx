@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import { Mail, Phone, MapPin, Github, Linkedin, Send, CheckCircle } from 'lucide-react';
+import { Mail, Phone, MapPin, Github, Linkedin, Send } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
-import emailjs from "emailjs-com";
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -56,38 +55,40 @@ const ContactSection = () => {
     });
   };
 
-const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  setIsSubmitting(true);
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
 
-  emailjs.send(
-    "your_service_id",   // from EmailJS
-    "your_template_id",  // from EmailJS
-    {
-      from_name: formData.name,
-      from_email: formData.email,
-      subject: formData.subject,
-      message: formData.message,
-    },
-    "your_public_key"    // from EmailJS
-  ).then(
-    () => {
-      toast({
-        title: "Message Sent!",
-        description: "Thank you for your message. I'll get back to you soon!",
+    try {
+      const response = await fetch('http://localhost:5000/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
       });
-      setFormData({ name: '', email: '', subject: '', message: '' });
-      setIsSubmitting(false);
-    },
-    (error) => {
+
+      const result = await response.json();
+
+      if (result.success) {
+        toast({
+          title: "Message Sent!",
+          description: "Thank you for your message. I'll get back to you soon!",
+        });
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      } else {
+        toast({
+          title: "Error",
+          description: "Something went wrong. Please try again.",
+        });
+      }
+    } catch (err) {
       toast({
-        title: "Error",
-        description: "Something went wrong. Please try again.",
+        title: "Server Error",
+        description: "Unable to send message. Please try again later.",
       });
-      setIsSubmitting(false);
     }
-  );
-};
+
+    setIsSubmitting(false);
+  };
 
   return (
     <section id="contact" className="py-20 bg-gradient-to-br from-accent/10 to-background">
