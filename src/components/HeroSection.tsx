@@ -39,7 +39,7 @@ const HeroSection = () => {
             <div className="mb-6">
               <h1 className="text-5xl lg:text-6xl font-bold mb-4">
                 Hi, I'm{' '}
-                <span className="gradient-text">Arunprakash S</span>
+                <span className="gradient-text">Arunprakash</span>
               </h1>
               <h2 className="text-2xl lg:text-3xl text-secondary font-semibold mb-6">
                 Full Stack Developer
